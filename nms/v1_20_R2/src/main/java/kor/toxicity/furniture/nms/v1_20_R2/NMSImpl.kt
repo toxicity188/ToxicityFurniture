@@ -85,6 +85,15 @@ class NMSImpl: NMS {
         override fun asBukkitEntity(): org.bukkit.entity.Entity {
             return entity.bukkitEntity
         }
+        protected fun sendDataPacket() {
+            if (connectionMap.isEmpty()) return
+            entity.entityData.nonDefaultValues?.let {
+                val packet = ClientboundSetEntityDataPacket(entity.id, it)
+                connectionMap.values.forEach { connection ->
+                    connection.send(packet)
+                }
+            }
+        }
     }
     private abstract class VirtualDisplayImpl<T: Display>(
         t: T,
@@ -92,6 +101,7 @@ class NMSImpl: NMS {
     ): VirtualEntityImpl<T>(t, location), VirtualDisplay {
         override fun setScale(x: Float, y: Float, z: Float) {
             entity.setTransformation(Transformation(null,null,Vector3f(x,y,z),null))
+            sendDataPacket()
         }
     }
 
@@ -101,13 +111,7 @@ class NMSImpl: NMS {
     ), VirtualItemDisplay {
         override fun setItem(itemStack: ItemStack) {
             entity.itemStack = CraftItemStack.asNMSCopy(itemStack)
-            entity.entityData.nonDefaultValues?.let {
-                if (connectionMap.isEmpty()) return@let
-                val packet = ClientboundSetEntityDataPacket(entity.id, it)
-                connectionMap.values.forEach { connection ->
-                    connection.send(packet)
-                }
-            }
+            sendDataPacket()
         }
     }
     private class VirtualTextDisplayImpl(location: Location): VirtualDisplayImpl<Display.TextDisplay>(
@@ -119,13 +123,7 @@ class NMSImpl: NMS {
     ), VirtualTextDisplay {
         override fun setText(component: Component) {
             entity.text = CraftChatMessage.fromJSON(GsonComponentSerializer.gson().serialize(component))
-            entity.entityData.nonDefaultValues?.let {
-                if (connectionMap.isEmpty()) return@let
-                val packet = ClientboundSetEntityDataPacket(entity.id, it)
-                connectionMap.values.forEach { connection ->
-                    connection.send(packet)
-                }
-            }
+            sendDataPacket()
         }
     }
     private inner class HitBoxEntityImpl(private val location: Location, private val internalSize: Int): HitBoxEntity {
