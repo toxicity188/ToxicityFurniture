@@ -1,4 +1,7 @@
-# ToxicityFurnitur
+# ToxicityFurniture
+
+## Dependency
+ToxicityLibs
 
 ## Add this plugin to dependency
 ``` kotlin
