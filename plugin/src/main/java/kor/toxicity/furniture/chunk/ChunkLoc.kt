@@ -1,4 +1,2 @@
 package kor.toxicity.furniture.chunk
-
-class ChunkLoc {
-}
+data class ChunkLoc(val x: Int, val z: Int)

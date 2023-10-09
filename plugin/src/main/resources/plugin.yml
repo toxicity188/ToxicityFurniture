@@ -1,12 +1,19 @@
 name: ToxicityFurniture
 version: ${version}
-main: kor.toxicity.furniture.ToxicityFurniture
+main: kor.toxicity.furniture.ToxicityFurnitureImpl
 api-version: 1.19
 author: Toxicity
 description: My Furniture plugin!
-load: STARTUP
+load: POSTWORLD
 depend:
   - ProtocolLib
-libraries:
-  - "net.kyori:adventure-api:${adventureVersion}"
-  - "net.kyori:adventure-platform-bukkit:${platformVersion}"
+  - ToxicityLibs
+softdepend:
+  - QuestAdder
+  - ModelEngine
+commands:
+  furniture:
+    aliases:
+      - fu
+    description: furniture-related command.
+    usage: /<command>

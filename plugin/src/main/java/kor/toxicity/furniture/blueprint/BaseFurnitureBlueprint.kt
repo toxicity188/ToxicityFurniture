@@ -1,16 +1,14 @@
 package kor.toxicity.furniture.blueprint
 
-import kor.toxicity.furniture.ToxicityFurniture
-import kor.toxicity.furniture.entity.BaseFurnitureEntity
+import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.extension.FURNITURE_ITEM_KEY
 import kor.toxicity.furniture.extension.getAsVector
 import kor.toxicity.furniture.manager.ResourcePackManager
-import org.bukkit.Location
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
-class FurnitureBlueprint(val furniture: ToxicityFurniture, val key: String, section: ConfigurationSection) {
+class BaseFurnitureBlueprint(private val baseKey: String, section: ConfigurationSection): FurnitureBlueprintImpl(section) {
     val hitBox = section.getConfigurationSection("hit-box")?.let {
         it.getKeys(false).mapNotNull { s ->
             it.getConfigurationSection(s)?.let { config ->
@@ -30,11 +28,11 @@ class FurnitureBlueprint(val furniture: ToxicityFurniture, val key: String, sect
     }
 
     val asset = (section.getString("asset") ?: throw RuntimeException("Asset value not found.")).let { str ->
-        ItemStack(ToxicityFurniture.Config.furnitureMaterial).apply {
+        ItemStack(ToxicityFurnitureImpl.Config.furnitureMaterial).apply {
             itemMeta = itemMeta?.apply {
                 setDisplayName(str)
                 setCustomModelData(ResourcePackManager.getCustomModelData(str) ?: throw RuntimeException("The asset named \"$str\" doesn't exist."))
-                persistentDataContainer.set(FURNITURE_ITEM_KEY, PersistentDataType.STRING, key)
+                persistentDataContainer.set(FURNITURE_ITEM_KEY, PersistentDataType.STRING, baseKey)
             }
         }
     }
@@ -43,8 +41,7 @@ class FurnitureBlueprint(val furniture: ToxicityFurniture, val key: String, sect
     val scale = section.getAsVector("scale")
     val offset = section.getAsVector("offset")
 
-
-    fun place(location: Location): BaseFurnitureEntity {
-        return BaseFurnitureEntity(furniture,this, location)
+    override fun getKey(): String {
+        return baseKey
     }
 }

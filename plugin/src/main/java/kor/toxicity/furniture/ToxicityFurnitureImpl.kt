@@ -1,5 +1,9 @@
 package kor.toxicity.furniture
 
+import kor.toxicity.furniture.api.FurnitureAPI
+import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
+import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.blueprint.FurnitureBlueprintImpl
 import kor.toxicity.furniture.manager.EntityManager
 import kor.toxicity.furniture.manager.ResourcePackManager
 import kor.toxicity.furniture.nms.NMS
@@ -8,15 +12,18 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.World
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
-import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
-class ToxicityFurniture: JavaPlugin() {
+class ToxicityFurnitureImpl: FurnitureAPI() {
     companion object {
-        private lateinit var plugin: ToxicityFurniture
+        private lateinit var plugin: ToxicityFurnitureImpl
 
         lateinit var nms: NMS
             private set
@@ -65,6 +72,7 @@ class ToxicityFurniture: JavaPlugin() {
         .build()
 
     override fun onEnable() {
+        super.onEnable()
         plugin = this
         try {
             nms = Class.forName("kor.toxicity.furniture.nms.${Bukkit.getServer()::class.java.`package`.name.split('.')[3]}.NMSImpl").getConstructor().newInstance() as NMS
@@ -166,5 +174,21 @@ class ToxicityFurniture: JavaPlugin() {
         warn("Unable to load this file: $name.yml")
         warn("Reason: ${ex.message}")
         null
+    }
+
+    override fun getBlueprint(name: String): FurnitureBlueprint? {
+        return EntityManager.getBlueprint(name)
+    }
+
+    override fun getByUUID(world: World, uuid: UUID): FurnitureEntity? {
+        return EntityManager.getByUUID(world, uuid)
+    }
+
+    override fun create(blueprint: FurnitureBlueprint, location: Location): FurnitureEntity {
+        return EntityManager.spawn(this, blueprint as FurnitureBlueprintImpl, location)
+    }
+
+    override fun remove(entity: FurnitureEntity) {
+        EntityManager.deSpawn(this, entity)
     }
 }

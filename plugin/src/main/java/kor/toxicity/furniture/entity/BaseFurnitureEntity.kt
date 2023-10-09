@@ -1,8 +1,9 @@
 package kor.toxicity.furniture.entity
 
-import kor.toxicity.furniture.ToxicityFurniture
-import kor.toxicity.furniture.api.Furniture
-import kor.toxicity.furniture.blueprint.FurnitureBlueprint
+import kor.toxicity.furniture.ToxicityFurnitureImpl
+import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
+import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.blueprint.BaseFurnitureBlueprint
 import kor.toxicity.furniture.extension.parseYawToRadian
 import kor.toxicity.furniture.extension.rotateYaw
 import kor.toxicity.furniture.manager.UUIDManager
@@ -12,27 +13,27 @@ import org.bukkit.Location
 import org.bukkit.entity.Player
 import java.util.UUID
 
-class FurnitureEntity(
-    val furniture: ToxicityFurniture,
-    val blueprint: FurnitureBlueprint,
-    val centerLocation: Location
-): Furniture {
+class BaseFurnitureEntity(
+    val furniture: ToxicityFurnitureImpl,
+    private val baseBlueprint: BaseFurnitureBlueprint,
+    private val centerLocation: Location
+): FurnitureEntity {
 
-    val uuid = UUIDManager.getUUID()
+    private val uniqueID = UUIDManager.getUUID()
 
     private val rotate = centerLocation.parseYawToRadian()
     private val playerMap = HashMap<UUID,Player>()
 
-    private val hitBoxes = blueprint.hitBox.map {
-        ToxicityFurniture.nms.createHitBoxEntity(
+    private val hitBoxes = baseBlueprint.hitBox.map {
+        ToxicityFurnitureImpl.nms.createHitBoxEntity(
             centerLocation.clone().add(it.relativeLocation.clone().rotateYaw(rotate)),
             it.size
         )
     }.toMutableList()
     private val displays = mutableListOf<VirtualEntity>(
-        ToxicityFurniture.nms.createItemDisplay(centerLocation.clone().add(blueprint.offset.clone())).apply {
-            setItem(blueprint.asset)
-            val vec = blueprint.scale
+        ToxicityFurnitureImpl.nms.createItemDisplay(centerLocation.clone().add(baseBlueprint.offset.clone())).apply {
+            setItem(baseBlueprint.asset)
+            val vec = baseBlueprint.scale
             setScale(
                 vec.x.toFloat(),
                 vec.y.toFloat(),
@@ -40,9 +41,9 @@ class FurnitureEntity(
             )
         }
     ).apply {
-        blueprint.texts?.let {
+        baseBlueprint.texts?.let {
             addAll(it.map { blueprint ->
-                ToxicityFurniture.nms.createTextDisplay(
+                ToxicityFurnitureImpl.nms.createTextDisplay(
                     centerLocation.clone().add(blueprint.relativeLocation.rotateYaw(rotate))
                 ).apply {
                     setText(blueprint.text)
@@ -57,7 +58,7 @@ class FurnitureEntity(
         }
     }
 
-    fun spawn(player: Player, sync: Boolean = true) {
+    override fun spawn(player: Player, sync: Boolean) {
         if (playerMap.put(player.uniqueId,player) == null) {
             hitBoxSpawn(sync)
             displays.forEach {
@@ -65,7 +66,7 @@ class FurnitureEntity(
             }
         }
     }
-    fun remove(player: Player, sync: Boolean = true) {
+    override fun deSpawn(player: Player, sync: Boolean) {
         if (playerMap.remove(player.uniqueId) != null) {
             displays.forEach {
                 it.hide(player)
@@ -83,17 +84,17 @@ class FurnitureEntity(
         }
     }
 
-    fun getChunks() = displays.map {
+    override fun getChunks() = displays.map {
         it.asBukkitEntity().run {
             location.chunk
         }
     }
 
-    fun getUUIDSet() = hitBoxes.map {
+    override fun getUUIDSet() = HashSet(hitBoxes.map {
         it.getUUID()
-    }.distinct()
+    })
 
-    fun remove(sync: Boolean = true) {
+    override fun deSpawn(sync: Boolean) {
         if (sync) hitBoxes.forEach {
             it.remove()
         } else {
@@ -110,7 +111,7 @@ class FurnitureEntity(
     }
     fun isNotEmpty() = playerMap.isNotEmpty()
 
-    fun hitBoxSpawn(sync: Boolean) {
+    override fun hitBoxSpawn(sync: Boolean) {
         val filter = hitBoxes.filter {
             !it.isSpawned()
         }
@@ -124,18 +125,32 @@ class FurnitureEntity(
             }
         }
     }
+
+    override fun getViewer(): Collection<Player> {
+        return playerMap.values
+    }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as FurnitureEntity
+        other as BaseFurnitureEntity
 
         return uuid == other.uuid
     }
 
-    override fun hashCode(): Int {
-        return uuid.hashCode()
+    override fun getUUID(): UUID {
+        return uniqueID
     }
 
+    override fun hashCode(): Int {
+        return uniqueID.hashCode()
+    }
 
+    override fun getBlueprint(): FurnitureBlueprint {
+        return baseBlueprint
+    }
+
+    override fun getLocation(): Location {
+        return centerLocation.clone()
+    }
 }

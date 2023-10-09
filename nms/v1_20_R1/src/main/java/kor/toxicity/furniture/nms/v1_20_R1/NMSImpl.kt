@@ -1,7 +1,6 @@
-package kor.toxicity.furniture.nms.v1_19_R3
+package kor.toxicity.furniture.nms.v1_20_R1
 
 import com.mojang.math.Transformation
-import kor.toxicity.furniture.manager.UUIDManager
 import kor.toxicity.furniture.nms.*
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
@@ -15,13 +14,11 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.Entity.RemovalReason
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.monster.Slime
-import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.craftbukkit.v1_19_R3.CraftWorld
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftEntity
-import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer
-import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack
-import org.bukkit.craftbukkit.v1_19_R3.util.CraftChatMessage
+import org.bukkit.craftbukkit.v1_20_R1.CraftWorld
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer
+import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack
+import org.bukkit.craftbukkit.v1_20_R1.util.CraftChatMessage
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.inventory.ItemStack
@@ -116,7 +113,6 @@ class NMSImpl: NMS {
     private class VirtualTextDisplayImpl(location: Location): VirtualDisplayImpl<Display.TextDisplay>(
         Display.TextDisplay(EntityType.TEXT_DISPLAY, (location.world as CraftWorld).handle).apply {
             billboardConstraints = Display.BillboardConstraints.CENTER
-            backgroundColor = 0
         },
         location
     ), VirtualTextDisplay {
@@ -153,7 +149,7 @@ class NMSImpl: NMS {
                     set(entity, null)
                     isAccessible = false
                 }
-                spawn = entity.level.addFreshEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL)
+                spawn = (location.world as CraftWorld).handle.addFreshEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL)
             }
         }
 
@@ -171,6 +167,9 @@ class NMSImpl: NMS {
                 entity.valid = false
                 spawn = false
             }
+        }
+        override fun getBukkitEntity(): org.bukkit.entity.Entity {
+            return entity.bukkitEntity
         }
     }
 }

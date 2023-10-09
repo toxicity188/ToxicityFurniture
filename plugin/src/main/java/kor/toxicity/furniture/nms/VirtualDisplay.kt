@@ -1,4 +1,5 @@
 package kor.toxicity.furniture.nms
 
-interface VirtualDisplay {
+interface VirtualDisplay: VirtualEntity {
+    fun setScale(x: Float, y: Float, z: Float)
 }

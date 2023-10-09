@@ -1,4 +1,7 @@
 package kor.toxicity.furniture.nms
 
-interface VirtualItemDisplay {
+import org.bukkit.inventory.ItemStack
+
+interface VirtualItemDisplay: VirtualDisplay {
+    fun setItem(itemStack: ItemStack)
 }

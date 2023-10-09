@@ -1,4 +1,7 @@
 package kor.toxicity.furniture.nms
 
-interface VirtualTextDisplay {
+import net.kyori.adventure.text.Component
+
+interface VirtualTextDisplay: VirtualDisplay {
+    fun setText(component: Component)
 }

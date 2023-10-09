@@ -1,4 +1,4 @@
-package kor.toxicity.furniture.nms.v1_20_R1
+package kor.toxicity.furniture.nms.v1_20_R2
 
 import com.mojang.math.Transformation
 import kor.toxicity.furniture.nms.*
@@ -15,10 +15,10 @@ import net.minecraft.world.entity.Entity.RemovalReason
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.monster.Slime
 import org.bukkit.Location
-import org.bukkit.craftbukkit.v1_20_R1.CraftWorld
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer
-import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack
-import org.bukkit.craftbukkit.v1_20_R1.util.CraftChatMessage
+import org.bukkit.craftbukkit.v1_20_R2.CraftWorld
+import org.bukkit.craftbukkit.v1_20_R2.entity.CraftPlayer
+import org.bukkit.craftbukkit.v1_20_R2.inventory.CraftItemStack
+import org.bukkit.craftbukkit.v1_20_R2.util.CraftChatMessage
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.inventory.ItemStack
@@ -167,6 +167,9 @@ class NMSImpl: NMS {
                 entity.valid = false
                 spawn = false
             }
+        }
+        override fun getBukkitEntity(): org.bukkit.entity.Entity {
+            return entity.bukkitEntity
         }
     }
 }
