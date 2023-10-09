@@ -4,6 +4,9 @@ import kor.toxicity.furniture.api.entity.FurnitureEntity;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Be called when furniture is de-spawned.
+ */
 public class FurnitureDeSpawnEvent extends AbstractEvent implements FurnitureEntityEvent {
     private final @NotNull FurnitureEntity entity;
     public FurnitureDeSpawnEvent(@NotNull FurnitureEntity entity) {

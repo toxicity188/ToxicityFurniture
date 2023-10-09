@@ -22,7 +22,7 @@ public interface FurnitureBlueprint {
      * Returns whether this furniture entity will be saved.
      * @return save option
      */
-    boolean isSaved();
+    boolean isMarkedToSave();
 
     /**
      * Spawns a furniture entity by location.

@@ -31,7 +31,7 @@ public abstract class FurnitureAPI extends JavaPlugin {
      * @return an instance of furniture
      * @since 1.0
      */
-    public static FurnitureAPI getApi() {
+    public static @NotNull FurnitureAPI getApi() {
         return Objects.requireNonNull(api);
     }
 
@@ -102,6 +102,7 @@ public abstract class FurnitureAPI extends JavaPlugin {
         return world.getNearbyEntities(location, x, y, z).stream()
                 .map(e -> getByUUID(world, e.getUniqueId()))
                 .filter(Objects::nonNull)
+                .distinct()
                 .toList();
     }
 

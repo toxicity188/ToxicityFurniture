@@ -113,6 +113,7 @@ class NMSImpl: NMS {
     private class VirtualTextDisplayImpl(location: Location): VirtualDisplayImpl<Display.TextDisplay>(
         Display.TextDisplay(EntityType.TEXT_DISPLAY, (location.world as CraftWorld).handle).apply {
             billboardConstraints = Display.BillboardConstraints.CENTER
+            entityData.set(Display.TextDisplay.DATA_BACKGROUND_COLOR_ID, 0)
         },
         location
     ), VirtualTextDisplay {

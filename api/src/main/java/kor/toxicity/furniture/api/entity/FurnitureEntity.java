@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * An entity of furniture.
  */
-public interface FurnitureEntity {
+public interface FurnitureEntity extends Comparable<FurnitureEntity> {
     /**
      * Shows this entity to some player.
      * @param player target player

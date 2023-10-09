@@ -101,5 +101,8 @@ class ModelEngineFurnitureEntity(
     override fun hashCode(): Int {
         return uniqueID.hashCode()
     }
+    override fun compareTo(other: FurnitureEntity): Int {
+        return uuid.compareTo(other.uuid)
+    }
 
 }

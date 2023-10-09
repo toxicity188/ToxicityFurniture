@@ -5,7 +5,7 @@ import org.bukkit.configuration.ConfigurationSection
 
 sealed class FurnitureBlueprintImpl(section: ConfigurationSection): FurnitureBlueprint {
     private val save = section.getBoolean("save", true)
-    override fun isSaved(): Boolean {
+    override fun isMarkedToSave(): Boolean {
         return save
     }
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="update">
+    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="add event and bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +38,10 @@
         <option value="Kotlin Enum" />
         <option value="Kotlin Object" />
         <option value="Kotlin File" />
-        <option value="Class" />
-        <option value="Kotlin Interface" />
-        <option value="Interface" />
         <option value="Kotlin Class" />
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -64,6 +64,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-17&quot;,
@@ -86,6 +87,9 @@
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="kor.toxicity.furniture.nms.v1_20_R2" />
       <recent name="kor.toxicity.furniture.nms.v1_20_R1" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kor.toxicity.furniture.api.event" />
     </key>
   </component>
   <component name="RunManager">
@@ -134,11 +138,20 @@
       <option name="project" value="LOCAL" />
       <updated>1696847778031</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add event and bug fix">
+      <option name="closed" value="true" />
+      <created>1696859005973</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696859005973</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="add event and bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="add event and bug fix" />
   </component>
 </project>

@@ -166,4 +166,8 @@ class BaseFurnitureEntity(
     override fun getLocation(): Location {
         return centerLocation.clone()
     }
+
+    override fun compareTo(other: FurnitureEntity): Int {
+        return uuid.compareTo(other.uuid)
+    }
 }

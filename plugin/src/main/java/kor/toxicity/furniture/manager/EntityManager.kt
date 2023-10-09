@@ -223,7 +223,7 @@ object EntityManager: FurnitureManager {
             try {
                 val json = JsonArray()
                 entityRegistryMap[world.uid]?.forEach {
-                    if (it.blueprint.isSaved) json.add(JsonArray().apply {
+                    if (it.blueprint.isMarkedToSave) json.add(JsonArray().apply {
                         val loc = it.location
                         add(it.blueprint.key)
                         add(loc.x)
