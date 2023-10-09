@@ -1,0 +1,12 @@
+name: ToxicityFurniture
+version: ${version}
+main: kor.toxicity.furniture.ToxicityFurniture
+api-version: 1.19
+author: Toxicity
+description: My Furniture plugin!
+load: STARTUP
+depend:
+  - ProtocolLib
+libraries:
+  - "net.kyori:adventure-api:${adventureVersion}"
+  - "net.kyori:adventure-platform-bukkit:${platformVersion}"
