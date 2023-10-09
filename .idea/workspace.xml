@@ -4,54 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/api/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/FurnitureAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/FurnitureAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/blueprint/FurnitureBlueprint.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/blueprint/FurnitureBlueprint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/entity/FurnitureEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/entity/FurnitureEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureInteractEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureInteractEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/nms/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_19_R3/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_19_R3/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_19_R3/src/main/java/kor/toxicity/furniture/nms/v1_19_R3/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_19_R3/src/main/java/kor/toxicity/furniture/nms/v1_19_R3/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R1/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R1/src/main/java/kor/toxicity/furniture/nms/v1_20_R1/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R1/src/main/java/kor/toxicity/furniture/nms/v1_20_R1/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R2/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R2/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R2/src/main/java/kor/toxicity/furniture/nms/v1_20_R2/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R2/src/main/java/kor/toxicity/furniture/nms/v1_20_R2/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/ToxicityFurnitureImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/ToxicityFurnitureImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/BaseFurnitureBlueprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/BaseFurnitureBlueprint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/FurnitureBlueprintImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/FurnitureBlueprintImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/HitBoxBlueprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/HitBoxBlueprint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/ModelEngineFurnitureBlueprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/ModelEngineFurnitureBlueprint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/TextBlueprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/TextBlueprint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/chunk/ChunkLoc.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/chunk/ChunkLoc.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/BaseFurnitureEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/BaseFurnitureEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/ModelEngineFurnitureEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/ModelEngineFurnitureEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Configs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Configs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Gsons.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Gsons.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/ItemStacks.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/ItemStacks.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Vectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/extension/Vectors.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/FurnitureManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/FurnitureManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/ResourcePackManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/ResourcePackManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/UUIDManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/UUIDManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/HitBoxEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/HitBoxEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/NMS.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/NMS.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualDisplay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualDisplay.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualItemDisplay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualItemDisplay.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualTextDisplay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/VirtualTextDisplay.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/registry/EntityRegistry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/registry/EntityRegistry.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +47,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -169,6 +126,19 @@
       <option name="presentableId" value="Default" />
       <updated>1696672232238</updated>
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <option name="closed" value="true" />
+      <created>1696847778031</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696847778031</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>

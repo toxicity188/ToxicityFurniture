@@ -358,9 +358,7 @@ object EntityManager: FurnitureManager {
         var rotateYaw = location.yaw
         if (rotateYaw < 0) rotateYaw += 360
         val entity = when (blueprint) {
-            is BaseFurnitureBlueprint -> BaseFurnitureEntity(furniture, blueprint, location.apply {
-                y += 0.5
-            })
+            is BaseFurnitureBlueprint -> BaseFurnitureEntity(furniture, blueprint, location)
             is ModelEngineFurnitureBlueprint -> ModelEngineFurnitureEntity(furniture, blueprint, location)
         }
         entityRegistryMap.getOrPut(world.uid) {

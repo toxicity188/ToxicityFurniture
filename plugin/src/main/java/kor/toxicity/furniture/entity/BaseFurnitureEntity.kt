@@ -31,7 +31,9 @@ class BaseFurnitureEntity(
         )
     }.toMutableList()
     private val displays = mutableListOf<VirtualEntity>(
-        ToxicityFurnitureImpl.nms.createItemDisplay(centerLocation.clone().add(baseBlueprint.offset.clone())).apply {
+        ToxicityFurnitureImpl.nms.createItemDisplay(centerLocation.clone().apply {
+            y += 0.5
+        }.add(baseBlueprint.offset.clone())).apply {
             setItem(baseBlueprint.asset)
             val vec = baseBlueprint.scale
             setScale(
@@ -44,7 +46,7 @@ class BaseFurnitureEntity(
         baseBlueprint.texts?.let {
             addAll(it.map { blueprint ->
                 ToxicityFurnitureImpl.nms.createTextDisplay(
-                    centerLocation.clone().add(blueprint.relativeLocation.rotateYaw(rotate))
+                    centerLocation.clone().add(blueprint.relativeLocation.clone().rotateYaw(rotate))
                 ).apply {
                     setText(blueprint.text)
                     val vec = blueprint.scale

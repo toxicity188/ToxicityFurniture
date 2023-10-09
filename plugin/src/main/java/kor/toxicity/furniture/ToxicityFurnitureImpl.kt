@@ -10,6 +10,8 @@ import kor.toxicity.furniture.nms.NMS
 import kor.toxicity.toxicitylibs.api.command.CommandAPI
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.event.ClickEvent
+import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -17,7 +19,14 @@ import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
 import java.io.File
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,9 +47,11 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
             ResourcePackManager,
             EntityManager
         )
+
+        const val VERSION = "1.0.1"
     }
 
-    val command = CommandAPI("<gradient:aqua-blue>[Furniture]")
+    val command: CommandAPI = CommandAPI("<gradient:aqua-blue>[Furniture]")
         .setCommandPrefix("fu")
 
         .setUnknownCommandMessage("Unknown command. try \"/fu help\" to find a command.")
@@ -89,6 +100,38 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
         Bukkit.getScheduler().runTask(this) { _ ->
             load()
             send("Plugin enabled.")
+            try {
+                val get = HttpClient.newHttpClient().send(
+                    HttpRequest.newBuilder()
+                        .uri(URI.create("https://api.spigotmc.org/legacy/update.php?resource=113015/"))
+                        .GET()
+                        .build(), HttpResponse.BodyHandlers.ofString()
+                ).body()
+                if (VERSION != get) {
+                    warn("New version found: $get")
+                    warn("Download: https://www.spigotmc.org/resources/toxicityfurniture.113015/")
+                    Bukkit.getPluginManager().registerEvents(object : Listener {
+                        @EventHandler
+                        fun join(e: PlayerJoinEvent) {
+                            val player = e.player
+                            if (player.isOp) {
+                                val audience = audiences.player(player)
+                                audience.sendMessage(
+                                    Component.text("New version found: $get")
+                                        .color(NamedTextColor.YELLOW)
+                                )
+                                audience.sendMessage(
+                                    Component.text("Download: https://www.spigotmc.org/resources/toxicityfurniture.113015/")
+                                        .color(NamedTextColor.YELLOW)
+                                        .clickEvent(ClickEvent.openUrl("https://www.spigotmc.org/resources/toxicityfurniture.113015/"))
+                                )
+                            }
+                        }
+                    }, this)
+                }
+            } catch (ex: Exception) {
+                warn("Unable to get version.")
+            }
         }
     }
 
