@@ -3,7 +3,10 @@ package kor.toxicity.furniture.entity
 import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
 import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.api.event.FurnitureDeSpawnEvent
+import kor.toxicity.furniture.api.event.FurnitureSpawnEvent
 import kor.toxicity.furniture.blueprint.BaseFurnitureBlueprint
+import kor.toxicity.furniture.extension.call
 import kor.toxicity.furniture.extension.parseYawToRadian
 import kor.toxicity.furniture.extension.rotateYaw
 import kor.toxicity.furniture.manager.UUIDManager
@@ -17,7 +20,7 @@ class BaseFurnitureEntity(
     val furniture: ToxicityFurnitureImpl,
     private val baseBlueprint: BaseFurnitureBlueprint,
     private val centerLocation: Location
-): FurnitureEntity {
+): FurnitureEntityImpl {
 
     private val uniqueID = UUIDManager.getUUID()
 
@@ -97,13 +100,17 @@ class BaseFurnitureEntity(
     })
 
     override fun deSpawn(sync: Boolean) {
-        if (sync) hitBoxes.forEach {
-            it.remove()
+        if (sync) {
+            hitBoxes.forEach {
+                it.remove()
+            }
+            FurnitureDeSpawnEvent(this).call()
         } else {
             Bukkit.getScheduler().runTask(furniture) { _ ->
                 hitBoxes.forEach {
                     it.remove()
                 }
+                FurnitureDeSpawnEvent(this).call()
             }
         }
         displays.forEach {
@@ -118,13 +125,17 @@ class BaseFurnitureEntity(
             !it.isSpawned()
         }
         if (filter.isEmpty()) return
-        if (sync) filter.forEach {
-            it.spawn()
+        if (sync) {
+            filter.forEach {
+                it.spawn()
+            }
+            FurnitureSpawnEvent(this).call()
         }
         else Bukkit.getScheduler().runTask(furniture) { _ ->
             filter.forEach {
                 it.spawn()
             }
+            FurnitureSpawnEvent(this).call()
         }
     }
 

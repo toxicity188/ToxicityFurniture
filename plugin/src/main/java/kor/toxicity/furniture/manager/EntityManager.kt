@@ -11,6 +11,7 @@ import kor.toxicity.furniture.blueprint.FurnitureBlueprintImpl
 import kor.toxicity.furniture.blueprint.ModelEngineFurnitureBlueprint
 import kor.toxicity.furniture.chunk.ChunkLoc
 import kor.toxicity.furniture.entity.BaseFurnitureEntity
+import kor.toxicity.furniture.entity.FurnitureEntityImpl
 import kor.toxicity.furniture.entity.ModelEngineFurnitureEntity
 import kor.toxicity.furniture.extension.FURNITURE_ITEM_KEY
 import kor.toxicity.furniture.extension.GSON
@@ -367,7 +368,7 @@ object EntityManager: FurnitureManager {
         return entity
     }
 
-    fun deSpawn(furniture: ToxicityFurnitureImpl, entity: FurnitureEntity) {
+    fun deSpawn(furniture: ToxicityFurnitureImpl, entity: FurnitureEntityImpl) {
         val loc = entity.location
         val world = loc.world!!
         entityRegistryMap.getOrPut(world.uid) {

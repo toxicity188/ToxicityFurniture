@@ -3,6 +3,7 @@ package kor.toxicity.furniture.registry
 import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.api.entity.FurnitureEntity
 import kor.toxicity.furniture.chunk.ChunkLoc
+import kor.toxicity.furniture.entity.FurnitureEntityImpl
 import org.bukkit.Bukkit
 import org.bukkit.World
 import org.bukkit.entity.Player
@@ -12,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val world: World): Iterable<FurnitureEntity> {
     private val entityMap = ConcurrentHashMap<ChunkLoc, ChunkData>()
-    private val uuidMap = HashMap<UUID, FurnitureEntity>()
+    private val uuidMap = HashMap<UUID, FurnitureEntityImpl>()
     fun getByUUID(uuid: UUID) = uuidMap[uuid]
 
     fun enableChunk(chunk: ChunkLoc): Boolean {
@@ -22,7 +23,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
             b
         } ?: false
     }
-    fun addEntity(furnitureEntity: FurnitureEntity) {
+    fun addEntity(furnitureEntity: FurnitureEntityImpl) {
         furnitureEntity.getChunks().forEach {
             val data = entityMap.getOrPut(ChunkLoc(it.x,it.z)) {
                 ChunkData()
@@ -34,7 +35,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
         }
     }
 
-    fun removeEntity(furnitureEntity: FurnitureEntity, sync: Boolean = true) {
+    fun removeEntity(furnitureEntity: FurnitureEntityImpl, sync: Boolean = true) {
         for (value in entityMap.values) {
             if (value.entity.remove(furnitureEntity.uuid) != null) break
         }
@@ -109,7 +110,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
     }
 
     private inner class ChunkData {
-        val entity = ConcurrentHashMap<UUID,FurnitureEntity>()
+        val entity = ConcurrentHashMap<UUID,FurnitureEntityImpl>()
         var enabled = false
             private set
         var task: BukkitTask? = null

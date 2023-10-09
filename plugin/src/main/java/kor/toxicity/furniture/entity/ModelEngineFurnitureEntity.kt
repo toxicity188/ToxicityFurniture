@@ -4,7 +4,10 @@ import com.ticxo.modelengine.api.ModelEngineAPI
 import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
 import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.api.event.FurnitureDeSpawnEvent
+import kor.toxicity.furniture.api.event.FurnitureSpawnEvent
 import kor.toxicity.furniture.blueprint.ModelEngineFurnitureBlueprint
+import kor.toxicity.furniture.extension.call
 import kor.toxicity.furniture.manager.UUIDManager
 import org.bukkit.Bukkit
 import org.bukkit.Chunk
@@ -19,7 +22,7 @@ class ModelEngineFurnitureEntity(
     private val furniture: ToxicityFurnitureImpl,
     private val baseBlueprint: ModelEngineFurnitureBlueprint,
     private val centerLocation: Location
-): FurnitureEntity {
+): FurnitureEntityImpl {
     private val uniqueID = UUIDManager.getUUID()
 
     private val hitBoxEntity = ToxicityFurnitureImpl.nms.createHitBoxEntity(centerLocation, 1)
@@ -37,6 +40,7 @@ class ModelEngineFurnitureEntity(
         if (!hitBoxEntity.isSpawned()) return
         fun deSpawn() {
             hitBoxEntity.remove()
+            FurnitureDeSpawnEvent(this).call()
         }
         if (sync) deSpawn()
         else Bukkit.getScheduler().runTask(furniture) { _ ->
@@ -49,6 +53,7 @@ class ModelEngineFurnitureEntity(
         fun spawn() {
             hitBoxEntity.spawn()
             ModelEngineAPI.createModeledEntity(hitBoxEntity.getBukkitEntity()).addModel(ModelEngineAPI.createActiveModel(baseBlueprint.model), true)
+            FurnitureSpawnEvent(this).call()
         }
         if (sync) spawn()
         else Bukkit.getScheduler().runTask(furniture) { _ ->

@@ -40,14 +40,6 @@ public interface FurnitureEntity {
     default void deSpawn() {
         deSpawn(true);
     }
-    /**
-     * Spawns hit box entity.
-     * Can fail if player doesn't exist nearby it's location.
-     * @since 1.0
-     */
-    default void hitBoxSpawn() {
-        hitBoxSpawn(true);
-    }
 
     /**
      * Returns whether any player currently seeing this entity.
@@ -99,13 +91,6 @@ public interface FurnitureEntity {
      * @since 1.0
      */
     void deSpawn(boolean sync);
-    /**
-     * Spawns hit box entity.
-     * Can fail if player doesn't exist nearby it's location.
-     * @param sync whether this method is called synchronously
-     * @since 1.0
-     */
-    void hitBoxSpawn(boolean sync);
 
     /**
      * Gets a unique id of this entity.

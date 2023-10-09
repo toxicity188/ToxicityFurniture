@@ -2,17 +2,33 @@ package kor.toxicity.furniture.api.event;
 
 import kor.toxicity.furniture.api.entity.FurnitureEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Be called when player right clicks some furniture.
  */
-public class FurnitureInteractEvent extends FurnitureEvent {
+public class FurnitureInteractEvent extends AbstractEvent implements FurnitureEntityEvent, FurniturePlayerEvent {
     private final @NotNull PlayerInteractAtEntityEvent event;
-    public FurnitureInteractEvent(@NotNull Player who, @NotNull FurnitureEntity furniture, @NotNull PlayerInteractAtEntityEvent event) {
-        super(who, furniture);
+    private final @NotNull Player player;
+    private final @NotNull FurnitureEntity entity;
+    public FurnitureInteractEvent(@NotNull Player player, @NotNull FurnitureEntity entity, @NotNull PlayerInteractAtEntityEvent event) {
+        this.player = player;
+        this.entity = entity;
         this.event = event;
+    }
+
+    @NotNull
+    @Override
+    public Player getPlayer() {
+        return player;
+    }
+
+    @NotNull
+    @Override
+    public FurnitureEntity getEntity() {
+        return entity;
     }
 
     /**
@@ -22,5 +38,9 @@ public class FurnitureInteractEvent extends FurnitureEvent {
      */
     public @NotNull PlayerInteractAtEntityEvent getEvent() {
         return event;
+    }
+
+    public static HandlerList getHandlerList() {
+        return HANDLER_LIST;
     }
 }

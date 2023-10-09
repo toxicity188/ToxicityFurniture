@@ -3,15 +3,20 @@ package kor.toxicity.furniture
 import kor.toxicity.furniture.api.FurnitureAPI
 import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
 import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.api.event.FurnitureEnableEndEvent
+import kor.toxicity.furniture.api.event.FurnitureEnableStartEvent
 import kor.toxicity.furniture.blueprint.FurnitureBlueprintImpl
+import kor.toxicity.furniture.entity.FurnitureEntityImpl
+import kor.toxicity.furniture.extension.call
 import kor.toxicity.furniture.manager.EntityManager
 import kor.toxicity.furniture.manager.ResourcePackManager
 import kor.toxicity.furniture.nms.NMS
+import kor.toxicity.questadder.api.event.ReloadEndEvent
+import kor.toxicity.questadder.api.event.ReloadStartEvent
 import kor.toxicity.toxicitylibs.api.command.CommandAPI
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.ClickEvent
-import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -28,7 +33,6 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ToxicityFurnitureImpl: FurnitureAPI() {
     companion object {
@@ -71,12 +75,14 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
         .setUsage("reload")
         .setPermission(arrayOf("furniture.reload"))
         .setExecutor { t, _ ->
+            ReloadStartEvent().call()
             Bukkit.getScheduler().runTaskAsynchronously(this) { _ ->
                 var time = System.currentTimeMillis()
                 load()
                 time = System.currentTimeMillis() - time
                 Bukkit.getScheduler().runTask(this) { _ ->
                     audiences.sender(t).sendMessage(Component.text("Reload completed! ($time ms)").color(NamedTextColor.GREEN))
+                    ReloadEndEvent().call()
                 }
             }
         }
@@ -98,7 +104,9 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
             it.start(this)
         }
         Bukkit.getScheduler().runTask(this) { _ ->
+            FurnitureEnableStartEvent().call()
             load()
+            FurnitureEnableEndEvent().call()
             send("Plugin enabled.")
             try {
                 val get = HttpClient.newHttpClient().send(
@@ -232,6 +240,6 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
     }
 
     override fun remove(entity: FurnitureEntity) {
-        EntityManager.deSpawn(this, entity)
+        EntityManager.deSpawn(this, entity as FurnitureEntityImpl)
     }
 }
