@@ -12,6 +12,7 @@ import kor.toxicity.furniture.manager.UUIDManager
 import org.bukkit.Bukkit
 import org.bukkit.Chunk
 import org.bukkit.Location
+import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import java.util.*
 import kotlin.collections.ArrayList
@@ -106,4 +107,11 @@ class ModelEngineFurnitureEntity(
         return uuid.compareTo(other.uuid)
     }
 
+    override fun getHitboxEntity(uuid: UUID): Entity {
+        return hitBoxEntity.getBukkitEntity()
+    }
+
+    override fun teleport(location: Location) {
+        hitBoxEntity.teleport(location)
+    }
 }

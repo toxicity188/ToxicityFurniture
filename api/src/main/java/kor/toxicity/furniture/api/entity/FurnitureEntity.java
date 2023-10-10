@@ -4,8 +4,10 @@ import kor.toxicity.furniture.api.FurnitureAPI;
 import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.Collection;
@@ -124,4 +126,19 @@ public interface FurnitureEntity extends Comparable<FurnitureEntity> {
      * @since 1.0.4
      */
     boolean isMarkedToDeSpawn();
+
+    /**
+     * Gets an entity from given uuid.
+     * @param uuid bukkit entity's id
+     * @return an entity object or null if not exist
+     * @since 1.0.4
+     */
+    @Nullable Entity getHitboxEntity(@NotNull UUID uuid);
+
+    /**
+     * Teleports entity to given location.
+     * @param location target location
+     * @since 1.0.4
+     */
+    void teleport(@NotNull Location location);
 }

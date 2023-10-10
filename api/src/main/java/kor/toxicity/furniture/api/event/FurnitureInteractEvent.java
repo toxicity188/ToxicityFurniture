@@ -2,6 +2,7 @@ package kor.toxicity.furniture.api.event;
 
 import kor.toxicity.furniture.api.entity.FurnitureEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.jetbrains.annotations.NotNull;
@@ -9,10 +10,11 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Be called when player right clicks some furniture.
  */
-public class FurnitureInteractEvent extends AbstractEvent implements FurnitureEntityEvent, FurniturePlayerEvent {
+public class FurnitureInteractEvent extends AbstractEvent implements FurnitureEntityEvent, FurniturePlayerEvent, Cancellable {
     private final @NotNull PlayerInteractAtEntityEvent event;
     private final @NotNull Player player;
     private final @NotNull FurnitureEntity entity;
+    private boolean cancelled;
     public FurnitureInteractEvent(@NotNull Player player, @NotNull FurnitureEntity entity, @NotNull PlayerInteractAtEntityEvent event) {
         this.player = player;
         this.entity = entity;
@@ -42,5 +44,15 @@ public class FurnitureInteractEvent extends AbstractEvent implements FurnitureEn
 
     public static HandlerList getHandlerList() {
         return HANDLER_LIST;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 }

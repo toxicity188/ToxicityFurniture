@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.Entity.RemovalReason
 import net.minecraft.world.entity.EntityType
+import net.minecraft.world.entity.animal.horse.Horse
 import net.minecraft.world.entity.monster.Slime
 import org.bukkit.Location
 import org.bukkit.craftbukkit.v1_20_R2.CraftWorld
@@ -169,6 +170,9 @@ class NMSImpl: NMS {
         }
         override fun getBukkitEntity(): org.bukkit.entity.Entity {
             return entity.bukkitEntity
+        }
+        override fun teleport(location: Location) {
+            entity.moveTo(location.x,location.y,location.z,location.yaw,location.pitch)
         }
     }
 }

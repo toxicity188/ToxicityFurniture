@@ -6,4 +6,5 @@ import org.bukkit.configuration.ConfigurationSection
 class HitBoxBlueprint(section: ConfigurationSection) {
     val relativeLocation = section.getAsVector("relative-location")
     val size = section.getInt("size",1).coerceAtLeast(1)
+    val sit = section.getBoolean("sit")
 }

@@ -1,5 +1,6 @@
 package kor.toxicity.furniture.nms
 
+import org.bukkit.Location
 import org.bukkit.entity.Entity
 import java.util.UUID
 
@@ -9,4 +10,5 @@ interface HitBoxEntity {
     fun isSpawned(): Boolean
     fun getUUID(): UUID
     fun getBukkitEntity(): Entity
+    fun teleport(location: Location)
 }

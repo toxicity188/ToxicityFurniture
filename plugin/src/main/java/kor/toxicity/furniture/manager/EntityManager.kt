@@ -12,6 +12,7 @@ import kor.toxicity.furniture.blueprint.ModelEngineFurnitureBlueprint
 import kor.toxicity.furniture.chunk.ChunkLoc
 import kor.toxicity.furniture.entity.BaseFurnitureEntity
 import kor.toxicity.furniture.entity.FurnitureEntityImpl
+import kor.toxicity.furniture.entity.HitBoxState
 import kor.toxicity.furniture.entity.ModelEngineFurnitureEntity
 import kor.toxicity.furniture.extension.FURNITURE_ITEM_KEY
 import kor.toxicity.furniture.extension.GSON
@@ -27,6 +28,7 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.entity.EntityUnleashEvent
 import org.bukkit.event.player.*
 import org.bukkit.event.world.ChunkLoadEvent
 import org.bukkit.event.world.ChunkUnloadEvent
@@ -137,12 +139,17 @@ object EntityManager: FurnitureManager {
                 val register = entityRegistryMap.getOrPut(player.world.uid) {
                     EntityRegistry(furniture,player.world)
                 }
-                register.getByUUID(e.rightClicked.uniqueId)?.let {
-                    FurnitureInteractEvent(player,it,e).call()
-                    e.isCancelled = true
+                val uuid = e.rightClicked.uniqueId
+                register.getByUUID(uuid)?.let {
                     if (remover.isSimilar(player.inventory.itemInMainHand)) {
                         register.removeEntity(it)
+                        e.isCancelled = true
+                        return
                     }
+                    if (FurnitureInteractEvent(player,it,e).call()) {
+                        if (it is BaseFurnitureEntity) it.sit(player, uuid)
+                    }
+                    e.isCancelled = true
                 }
             }
             @EventHandler

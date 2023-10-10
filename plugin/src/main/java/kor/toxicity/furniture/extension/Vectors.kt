@@ -27,3 +27,6 @@ fun Vector.rotate(pitch: Double, yaw: Double, roll: Double): Vector {
 fun Location.parseYawToRadian(): Double {
     return Math.toRadians(((if (yaw < 0) 360 + yaw else yaw) + 90).toDouble())
 }
+fun Location.parsePitchToRadian(): Double {
+    return Math.toRadians(-pitch.toDouble())
+}
