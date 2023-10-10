@@ -250,7 +250,18 @@ object EntityManager: FurnitureManager {
         entityRegistryMap.forEach {
             it.value.removeEntity(false)
         }
-        furniture.loadFolder("blueprints") { file, section ->
+        furniture.loadFolder(File(furniture.dataFolder.apply {
+            if (!exists()) mkdir()
+        },"blueprints").apply {
+            if (!exists()) {
+                mkdir()
+                furniture.resourcesForEach("blueprints") { name, stream ->
+                    File(this, name).outputStream().buffered().use {
+                        stream.copyTo(it)
+                    }
+                }
+            }
+        }) { file, section ->
             section.getKeys(false).forEach { str ->
                 section.getConfigurationSection(str)?.let { config ->
                     try {

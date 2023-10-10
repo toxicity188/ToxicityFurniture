@@ -72,7 +72,14 @@ object ResourcePackManager: FurnitureManager {
             val overrides = JsonArray()
             var i = 0
             File(dataFolder, "assets").apply {
-                if (!exists()) mkdir()
+                if (!exists()) {
+                    mkdir()
+                    furniture.resourcesForEach("assets") { name, stream ->
+                        File(this, name).outputStream().buffered().use {
+                            stream.copyTo(it)
+                        }
+                    }
+                }
             }.listFiles()?.forEach {
                 if (it.extension == "bbmodel") {
                     readBlockBenchModel(it, furnitureModels, furnitureTextures)

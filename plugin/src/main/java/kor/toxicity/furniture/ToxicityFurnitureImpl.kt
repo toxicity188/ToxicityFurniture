@@ -5,14 +5,14 @@ import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
 import kor.toxicity.furniture.api.entity.FurnitureEntity
 import kor.toxicity.furniture.api.event.FurnitureEnableEndEvent
 import kor.toxicity.furniture.api.event.FurnitureEnableStartEvent
+import kor.toxicity.furniture.api.event.FurnitureReloadEndEvent
+import kor.toxicity.furniture.api.event.FurnitureReloadStartEvent
 import kor.toxicity.furniture.blueprint.FurnitureBlueprintImpl
 import kor.toxicity.furniture.entity.FurnitureEntityImpl
 import kor.toxicity.furniture.extension.call
 import kor.toxicity.furniture.manager.EntityManager
 import kor.toxicity.furniture.manager.ResourcePackManager
 import kor.toxicity.furniture.nms.NMS
-import kor.toxicity.questadder.api.event.ReloadEndEvent
-import kor.toxicity.questadder.api.event.ReloadStartEvent
 import kor.toxicity.toxicitylibs.api.command.CommandAPI
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import net.kyori.adventure.text.Component
@@ -28,11 +28,13 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import java.io.File
+import java.io.InputStream
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.util.*
+import java.util.jar.JarFile
 
 class ToxicityFurnitureImpl: FurnitureAPI() {
     companion object {
@@ -52,7 +54,7 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
             EntityManager
         )
 
-        const val VERSION = "1.0.2"
+        const val VERSION = "1.0.3"
     }
 
     val command: CommandAPI = CommandAPI("<gradient:aqua-blue>[Furniture]")
@@ -75,14 +77,14 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
         .setUsage("reload")
         .setPermission(arrayOf("furniture.reload"))
         .setExecutor { t, _ ->
-            ReloadStartEvent().call()
+            FurnitureReloadStartEvent().call()
             Bukkit.getScheduler().runTaskAsynchronously(this) { _ ->
                 var time = System.currentTimeMillis()
                 load()
                 time = System.currentTimeMillis() - time
                 Bukkit.getScheduler().runTask(this) { _ ->
                     audiences.sender(t).sendMessage(Component.text("Reload completed! ($time ms)").color(NamedTextColor.GREEN))
-                    ReloadEndEvent().call()
+                    FurnitureReloadEndEvent().call()
                 }
             }
         }
@@ -196,11 +198,14 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
     }
 
     fun loadFolder(dir: String, action: (File,ConfigurationSection) -> Unit) {
-        File(dataFolder.apply {
+        loadFolder(File(dataFolder.apply {
             if (!exists()) mkdir()
         },dir).apply {
             if (!exists()) mkdir()
-        }.listFiles()?.forEach {
+        }, action)
+    }
+    fun loadFolder(dir: File, action: (File,ConfigurationSection) -> Unit) {
+        dir.listFiles()?.forEach {
             if (it.extension == "yml") {
                 try {
                     action(it,YamlConfiguration().apply {
@@ -241,5 +246,14 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
 
     override fun remove(entity: FurnitureEntity) {
         EntityManager.deSpawn(this, entity as FurnitureEntityImpl)
+    }
+
+    fun resourcesForEach(dir: String, action: (String, InputStream) -> Unit) {
+        JarFile(file).entries().asIterator().forEach {
+            if (it.name.startsWith(dir) && !it.isDirectory) getResource(it.name)?.buffered()?.use { stream ->
+                val split = it.name.split("/")
+                action(split.last(), stream)
+            }
+        }
     }
 }

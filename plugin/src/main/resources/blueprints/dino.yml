@@ -1,0 +1,119 @@
+parasaurolophus_doll:
+  asset: dino_parasaurolophus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+mosasaurus_doll:
+  asset: dino_mosasaurus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+dilophosaurus_doll:
+  asset: dino_dilophosaurus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+brachiosaurus_doll:
+  asset: dino_brachiosaurus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+velociraptor_doll:
+  asset: dino_velociraptor_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+tyranosaurus_doll:
+  asset: dino_tyranosaurus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1
+stegosaurus_doll:
+  asset: dino_stegosaurus_doll
+  offset:
+    x: 0
+    y: 0
+    z: 0
+  hit-box:
+    1:
+      relative-location:
+        x: 0
+        y: 0
+        z: 0
+      size: 2
+  scale:
+    x: 1
+    y: 1
+    z: 1

@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="add event and bug fix">
+    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="update version">
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_brachiosaurus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_dilophosaurus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_mosasaurus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_parasaurolophus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_stegosaurus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_tyranosaurus_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/assets/dino_velociraptor_doll.bbmodel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugin/src/main/resources/blueprints/dino.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/ToxicityFurnitureImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/ToxicityFurnitureImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/ResourcePackManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/ResourcePackManager.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,22 +72,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/angry/intellij/ToxicityFurniture/modelengine/R3/src&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.35327965&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "temurin-17",
+    "last_opened_file_path": "C:/Users/angry/intellij/ToxicityFurniture/plugin/src/main/resources/blueprints",
+    "project.structure.last.edited": "모듈",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.35327965"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\angry\intellij\ToxicityFurniture\plugin\src\main\resources\blueprints" />
+      <recent name="C:\Users\angry\intellij\ToxicityFurniture\plugin\src\main\resources\assets" />
       <recent name="C:\Users\angry\intellij\ToxicityFurniture\modelengine\R3\src" />
       <recent name="C:\Users\angry\intellij\ToxicityFurniture\nms\v1_20_R2" />
       <recent name="C:\Users\angry\intellij\ToxicityFurniture\nms\v1_20_R1" />
@@ -146,12 +159,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696859005973</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update version">
+      <option name="closed" value="true" />
+      <created>1696897170325</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696897170325</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <MESSAGE value="add event and bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="add event and bug fix" />
+    <MESSAGE value="update version" />
+    <option name="LAST_COMMIT_MESSAGE" value="update version" />
   </component>
 </project>
