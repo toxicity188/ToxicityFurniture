@@ -10,8 +10,14 @@ import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitTask
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.collections.HashMap
 
 class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val world: World): Iterable<FurnitureEntity> {
+    companion object {
+        val globalEntityMap = HashMap<UUID, FurnitureEntityImpl>()
+    }
+
+
     private val entityMap = ConcurrentHashMap<ChunkLoc, ChunkData>()
     private val uuidMap = HashMap<UUID, FurnitureEntityImpl>()
     fun getByUUID(uuid: UUID) = uuidMap[uuid]
@@ -33,6 +39,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
         furnitureEntity.getUUIDSet().forEach {
             uuidMap[it] = furnitureEntity
         }
+        globalEntityMap[furnitureEntity.uuid] = furnitureEntity
     }
 
     fun removeEntity(furnitureEntity: FurnitureEntityImpl, sync: Boolean = true) {
@@ -43,6 +50,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
             uuidMap.remove(it)
         }
         furnitureEntity.deSpawn(sync)
+        globalEntityMap.remove(furnitureEntity.uuid)
     }
 
     fun removeEntity(chunk: ChunkLoc, sync: Boolean = true) {
@@ -50,7 +58,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
             it.entity.forEach { entity ->
                 entity.value.deSpawn(sync)
             }
-            it.stopTask()
+            it.stopTask(sync)
         }
     }
     fun add(chunk: ChunkLoc, sync: Boolean = true) {
@@ -68,7 +76,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
             it.entity.forEach { entity ->
                 entity.value.deSpawn(sync)
             }
-            it.stopTask()
+            it.stopTask(sync)
         }
         entityMap.clear()
         uuidMap.clear()
@@ -91,7 +99,7 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
                     if (entity.value.isViewed) enabled = true
                 }
                 if (enabled && !it.enabled) it.runTask()
-                else if (!enabled && it.enabled) it.stopTask()
+                else if (!enabled && it.enabled) it.stopTask(sync)
             }
         }
     }
@@ -132,10 +140,20 @@ class EntityRegistry(private val furniture: ToxicityFurnitureImpl, private val w
                 }
             },5,5)
         }
-        fun stopTask() {
+        fun stopTask(sync: Boolean) {
             enabled = false
             task?.cancel()
             task = null
+            ArrayList(entity.values).forEach {
+                if (it.removal) {
+                    entity.remove(it.uuid)
+                    it.getUUIDSet().forEach { uuid ->
+                        uuidMap.remove(uuid)
+                    }
+                    globalEntityMap.remove(it.uuid)
+                    it.deSpawn(sync)
+                }
+            }
         }
     }
 }

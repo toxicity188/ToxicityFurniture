@@ -113,7 +113,19 @@ public abstract class FurnitureAPI extends JavaPlugin {
      * @return a created entity
      * @since 1.0
      */
-    public abstract @NotNull FurnitureEntity create(@NotNull FurnitureBlueprint blueprint, @NotNull Location location);
+    public @NotNull FurnitureEntity create(@NotNull FurnitureBlueprint blueprint, @NotNull Location location) {
+        return create(blueprint, location, false);
+    }
+
+    /**
+     * Spawns a furniture entity by given blueprint and location.
+     * @param blueprint target blueprint
+     * @param location target location
+     * @param markedToDeSpawn whether entity will be removed when de-spawned
+     * @return a created entity
+     * @since 1.0
+     */
+    public abstract @NotNull FurnitureEntity create(@NotNull FurnitureBlueprint blueprint, @NotNull Location location, boolean markedToDeSpawn);
 
     /**
      * Remove entity from registry.

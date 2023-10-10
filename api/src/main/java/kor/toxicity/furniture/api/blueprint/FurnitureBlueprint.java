@@ -33,4 +33,14 @@ public interface FurnitureBlueprint {
     default @NotNull FurnitureEntity spawn(@NotNull Location location) {
         return FurnitureAPI.getApi().create(this, Objects.requireNonNull(location));
     }
+    /**
+     * Spawns a furniture entity by location.
+     * @param location target location
+     * @param markedToDeSpawn whether entity will be removed when de-spawned
+     * @return a created entity
+     * @since 1.4
+     */
+    default @NotNull FurnitureEntity spawn(@NotNull Location location, boolean markedToDeSpawn) {
+        return FurnitureAPI.getApi().create(this, Objects.requireNonNull(location), markedToDeSpawn);
+    }
 }

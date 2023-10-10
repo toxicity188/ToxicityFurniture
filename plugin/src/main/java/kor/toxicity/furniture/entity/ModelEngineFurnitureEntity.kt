@@ -21,8 +21,9 @@ import kotlin.collections.HashSet
 class ModelEngineFurnitureEntity(
     private val furniture: ToxicityFurnitureImpl,
     private val baseBlueprint: ModelEngineFurnitureBlueprint,
-    private val centerLocation: Location
-): FurnitureEntityImpl {
+    private val centerLocation: Location,
+    removal: Boolean = false,
+): FurnitureEntityImpl(removal) {
     private val uniqueID = UUIDManager.getUUID()
 
     private val hitBoxEntity = ToxicityFurnitureImpl.nms.createHitBoxEntity(centerLocation, 1)

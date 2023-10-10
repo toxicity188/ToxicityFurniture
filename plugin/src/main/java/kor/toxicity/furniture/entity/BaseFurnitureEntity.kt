@@ -19,8 +19,9 @@ import java.util.UUID
 class BaseFurnitureEntity(
     val furniture: ToxicityFurnitureImpl,
     private val baseBlueprint: BaseFurnitureBlueprint,
-    private val centerLocation: Location
-): FurnitureEntityImpl {
+    private val centerLocation: Location,
+    removal: Boolean = false
+): FurnitureEntityImpl(removal) {
 
     private val uniqueID = UUIDManager.getUUID()
 

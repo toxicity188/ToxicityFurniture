@@ -357,21 +357,21 @@ object EntityManager: FurnitureManager {
         save(furniture)
     }
 
-    fun spawn(furniture: ToxicityFurnitureImpl, blueprint: FurnitureBlueprintImpl, location: Location): FurnitureEntity {
+    fun spawn(furniture: ToxicityFurnitureImpl, blueprint: FurnitureBlueprintImpl, location: Location, removal: Boolean = false): FurnitureEntity {
         val world = location.world!!
-        return place(furniture, blueprint, location).apply {
+        return place(furniture, blueprint, location, removal).apply {
             Bukkit.getOnlinePlayers().forEach { targetPlayer ->
                 if (targetPlayer.world.uid == world.uid) spawn(targetPlayer)
             }
         }
     }
-    private fun place(furniture: ToxicityFurnitureImpl, blueprint: FurnitureBlueprintImpl, location: Location): FurnitureEntity {
+    private fun place(furniture: ToxicityFurnitureImpl, blueprint: FurnitureBlueprintImpl, location: Location, removal: Boolean = false): FurnitureEntity {
         val world = location.world!!
         var rotateYaw = location.yaw
         if (rotateYaw < 0) rotateYaw += 360
         val entity = when (blueprint) {
-            is BaseFurnitureBlueprint -> BaseFurnitureEntity(furniture, blueprint, location)
-            is ModelEngineFurnitureBlueprint -> ModelEngineFurnitureEntity(furniture, blueprint, location)
+            is BaseFurnitureBlueprint -> BaseFurnitureEntity(furniture, blueprint, location, removal)
+            is ModelEngineFurnitureBlueprint -> ModelEngineFurnitureEntity(furniture, blueprint, location, removal)
         }
         entityRegistryMap.getOrPut(world.uid) {
             EntityRegistry(furniture,world)

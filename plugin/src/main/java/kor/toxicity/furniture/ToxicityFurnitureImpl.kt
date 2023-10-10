@@ -240,8 +240,8 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
         return EntityManager.getByUUID(world, uuid)
     }
 
-    override fun create(blueprint: FurnitureBlueprint, location: Location): FurnitureEntity {
-        return EntityManager.spawn(this, blueprint as FurnitureBlueprintImpl, location)
+    override fun create(blueprint: FurnitureBlueprint, location: Location, markedToDeSpawn: Boolean): FurnitureEntity {
+        return EntityManager.spawn(this, blueprint as FurnitureBlueprintImpl, location, markedToDeSpawn)
     }
 
     override fun remove(entity: FurnitureEntity) {

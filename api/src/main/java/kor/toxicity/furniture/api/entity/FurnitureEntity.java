@@ -114,6 +114,14 @@ public interface FurnitureEntity extends Comparable<FurnitureEntity> {
     /**
      * Gets the viewer of this entity.
      * @return all of viewer
+     * @since 1.0
      */
     @Unmodifiable @NotNull Collection<Player> getViewer();
+
+    /**
+     * Returns whether this entity will be removed when de-spawned.
+     * @return whether entity marked to remove
+     * @since 1.0.4
+     */
+    boolean isMarkedToDeSpawn();
 }
