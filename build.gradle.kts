@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "kor.toxicity.furniture"
-version = "1.0.3"
+version = "1.0.4"
 
 val pluginName = "ToxicityFurniture"
 

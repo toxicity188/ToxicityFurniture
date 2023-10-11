@@ -54,7 +54,7 @@ class ToxicityFurnitureImpl: FurnitureAPI() {
             EntityManager
         )
 
-        const val VERSION = "1.0.3"
+        const val VERSION = "1.0.4"
     }
 
     val command: CommandAPI = CommandAPI("<gradient:aqua-blue>[Furniture]")
