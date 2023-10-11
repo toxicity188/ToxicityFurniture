@@ -11,7 +11,6 @@ import java.io.File
 import java.io.FileWriter
 import java.util.*
 import javax.imageio.ImageIO
-import kotlin.collections.HashMap
 import kotlin.math.max
 
 object ResourcePackManager: FurnitureManager {

@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="add scheduler">
-      <change afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/HitBoxState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/entity/FurnitureEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/entity/FurnitureEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureInteractEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/event/FurnitureInteractEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_19_R3/src/main/java/kor/toxicity/furniture/nms/v1_19_R3/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_19_R3/src/main/java/kor/toxicity/furniture/nms/v1_19_R3/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R1/src/main/java/kor/toxicity/furniture/nms/v1_20_R1/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R1/src/main/java/kor/toxicity/furniture/nms/v1_20_R1/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nms/v1_20_R2/src/main/java/kor/toxicity/furniture/nms/v1_20_R2/NMSImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/nms/v1_20_R2/src/main/java/kor/toxicity/furniture/nms/v1_20_R2/NMSImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/HitBoxBlueprint.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/blueprint/HitBoxBlueprint.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/BaseFurnitureEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/BaseFurnitureEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/FurnitureEntityImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/FurnitureEntityImpl.kt" afterDir="false" />
+    <list default="true" id="ae10701e-6546-4c26-ac5f-ef5830c1f809" name="변경" comment="Add sit">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/kor/toxicity/furniture/api/entity/ModelEngineEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/ModelEngineFurnitureEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/entity/ModelEngineFurnitureEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/manager/EntityManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/NMS.kt" beforeDir="false" afterPath="$PROJECT_DIR$/plugin/src/main/java/kor/toxicity/furniture/nms/NMS.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +42,8 @@
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
         <option value="Class" />
-        <option value="Interface" />
         <option value="Kotlin Interface" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -176,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696926709893</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add sit">
+      <option name="closed" value="true" />
+      <created>1696945734848</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696945734848</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -184,6 +182,7 @@
     <MESSAGE value="add event and bug fix" />
     <MESSAGE value="update version" />
     <MESSAGE value="add scheduler" />
-    <option name="LAST_COMMIT_MESSAGE" value="add scheduler" />
+    <MESSAGE value="Add sit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add sit" />
   </component>
 </project>

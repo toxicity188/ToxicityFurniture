@@ -3,7 +3,7 @@ package kor.toxicity.furniture.manager
 import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.registry.EntityRegistry
 import org.bukkit.Bukkit
-import java.util.UUID
+import java.util.*
 
 object UUIDManager: FurnitureManager {
     private val uuidSet = HashSet<UUID>()

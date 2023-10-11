@@ -4,6 +4,7 @@ import com.ticxo.modelengine.api.ModelEngineAPI
 import kor.toxicity.furniture.ToxicityFurnitureImpl
 import kor.toxicity.furniture.api.blueprint.FurnitureBlueprint
 import kor.toxicity.furniture.api.entity.FurnitureEntity
+import kor.toxicity.furniture.api.entity.ModelEngineEntity
 import kor.toxicity.furniture.api.event.FurnitureDeSpawnEvent
 import kor.toxicity.furniture.api.event.FurnitureSpawnEvent
 import kor.toxicity.furniture.blueprint.ModelEngineFurnitureBlueprint
@@ -15,19 +16,17 @@ import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
-import kotlin.collections.HashSet
 
 class ModelEngineFurnitureEntity(
     private val furniture: ToxicityFurnitureImpl,
     private val baseBlueprint: ModelEngineFurnitureBlueprint,
     private val centerLocation: Location,
     removal: Boolean = false,
-): FurnitureEntityImpl(removal) {
+): FurnitureEntityImpl(removal), ModelEngineEntity {
     private val uniqueID = UUIDManager.getUUID()
 
     private val hitBoxEntity = ToxicityFurnitureImpl.nms.createHitBoxEntity(centerLocation, 1)
+    private val activeModel = ModelEngineAPI.createActiveModel(baseBlueprint.model)
     private val viewerMap = HashMap<UUID, Player>()
     override fun spawn(player: Player, sync: Boolean) {
         val isEmpty = viewerMap.isEmpty()
@@ -54,7 +53,7 @@ class ModelEngineFurnitureEntity(
         if (hitBoxEntity.isSpawned()) return
         fun spawn() {
             hitBoxEntity.spawn()
-            ModelEngineAPI.createModeledEntity(hitBoxEntity.getBukkitEntity()).addModel(ModelEngineAPI.createActiveModel(baseBlueprint.model), true)
+            ModelEngineAPI.createModeledEntity(hitBoxEntity.getBukkitEntity()).addModel(activeModel, true)
             FurnitureSpawnEvent(this).call()
         }
         if (sync) spawn()
@@ -113,5 +112,9 @@ class ModelEngineFurnitureEntity(
 
     override fun teleport(location: Location) {
         hitBoxEntity.teleport(location)
+    }
+
+    override fun playAnimation(animation: String, lerpIn: Double, lerpOut: Double, speed: Double, force: Boolean) {
+        activeModel.animationHandler.playAnimation(animation, lerpIn, lerpOut, speed, force)
     }
 }

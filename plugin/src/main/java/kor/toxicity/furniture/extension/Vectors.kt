@@ -2,7 +2,8 @@ package kor.toxicity.furniture.extension
 
 import org.bukkit.Location
 import org.bukkit.util.Vector
-import kotlin.math.*
+import kotlin.math.cos
+import kotlin.math.sin
 
 fun Vector.rotateYaw(yaw: Double): Vector {
     val getX = x

@@ -12,7 +12,6 @@ import kor.toxicity.furniture.blueprint.ModelEngineFurnitureBlueprint
 import kor.toxicity.furniture.chunk.ChunkLoc
 import kor.toxicity.furniture.entity.BaseFurnitureEntity
 import kor.toxicity.furniture.entity.FurnitureEntityImpl
-import kor.toxicity.furniture.entity.HitBoxState
 import kor.toxicity.furniture.entity.ModelEngineFurnitureEntity
 import kor.toxicity.furniture.extension.FURNITURE_ITEM_KEY
 import kor.toxicity.furniture.extension.GSON
@@ -28,7 +27,6 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.entity.EntityDamageEvent
-import org.bukkit.event.entity.EntityUnleashEvent
 import org.bukkit.event.player.*
 import org.bukkit.event.world.ChunkLoadEvent
 import org.bukkit.event.world.ChunkUnloadEvent

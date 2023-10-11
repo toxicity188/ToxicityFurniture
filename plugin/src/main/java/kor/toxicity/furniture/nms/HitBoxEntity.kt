@@ -2,7 +2,7 @@ package kor.toxicity.furniture.nms
 
 import org.bukkit.Location
 import org.bukkit.entity.Entity
-import java.util.UUID
+import java.util.*
 
 interface HitBoxEntity {
     fun spawn()
